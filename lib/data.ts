@@ -137,11 +137,11 @@ export const projects: Project[] = [
     name: "PRISM",
     tagline: "Quantum Simulator",
     description:
-      "Quantum circuit simulator focused on algorithm prototyping and hybrid quantum-classical workloads.",
+      "Quantum qubit simulator for quantum computing research and experimentation. Designed for algorithm prototyping and hybrid quantum-classical workloads.",
     tags: ["Quantum", "Simulation", "Algorithms"],
     status: "Active",
     featured: false,
-    github: null,
+    github: "https://github.com/hwangsresearch/PRISM",
   },
 ];
 

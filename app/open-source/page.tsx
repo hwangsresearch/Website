@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, Github, Package } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
-import { team, contact } from "@/lib/data";
+import { team, contact, projects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Open Source — Hwang's Research",
@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function OpenSourcePage() {
+  const publishedRepos = projects.filter((p) => p.github);
+  const pendingRepos = projects.filter((p) => !p.github);
+
   return (
     <>
       <PageHeader
@@ -38,39 +41,88 @@ export default function OpenSourcePage() {
 
         <section>
           <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-3">
-            Organization
+            Project Repositories
           </div>
           <h2 className="font-display text-2xl lg:text-3xl font-semibold tracking-tight mb-8">
-            Repositories launching soon.
+            Released and in preparation.
           </h2>
 
-          <div className="rounded-2xl bg-bg-surface border border-white/[0.05] p-8 lg:p-10">
-            <div className="flex items-start gap-5">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0">
-                <Package className="w-6 h-6" strokeWidth={1.5} />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-display font-semibold text-xl mb-2">
-                  Project releases in preparation
-                </h3>
-                <p className="text-text-secondary leading-relaxed mb-5">
-                  CI-FL, H2PFUser, AdaFed, and PRISM repositories will be
-                  released as their first stable interfaces stabilize. Until
-                  then, follow contributors&apos; personal GitHub for ongoing
-                  work-in-progress.
-                </p>
+          {publishedRepos.length > 0 && (
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              {publishedRepos.map((p) => (
                 <a
-                  href={contact.github}
+                  key={p.id}
+                  href={p.github!}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-bg-base font-medium hover:bg-accent-soft transition-all hover:shadow-glow text-sm"
+                  className="group p-7 rounded-2xl bg-bg-surface border border-white/[0.05] hover:border-accent/30 hover:bg-bg-raised transition-all hover:shadow-glow-sm"
                 >
-                  <Github className="w-4 h-4" />
-                  Visit organization on GitHub
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0">
+                      <Github className="w-5 h-5" strokeWidth={1.5} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-display font-semibold text-xl">
+                          {p.name}
+                        </h3>
+                        <span className="font-mono text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent/10 text-accent-soft border border-accent/20">
+                          {p.status}
+                        </span>
+                      </div>
+                      <div className="text-sm text-text-muted font-mono truncate">
+                        {p.github!.replace("https://", "")}
+                      </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-all shrink-0" />
+                  </div>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                    {p.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="font-mono text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-text-secondary border border-white/[0.06]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </a>
+              ))}
+            </div>
+          )}
+
+          {pendingRepos.length > 0 && (
+            <div className="rounded-2xl bg-bg-surface/50 border border-white/[0.04] p-6 lg:p-7">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-text-muted shrink-0">
+                  <Package className="w-5 h-5" strokeWidth={1.5} />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-display font-semibold mb-1.5">
+                    Additional releases in preparation
+                  </h3>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                    {pendingRepos.map((p) => p.name).join(", ")} will be
+                    released as their first stable interfaces land. Follow the
+                    organization for release announcements.
+                  </p>
+                  <a
+                    href={contact.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-accent transition-colors"
+                  >
+                    <Github className="w-4 h-4" />
+                    Visit organization
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </section>
 
         <section>
