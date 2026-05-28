@@ -130,7 +130,7 @@ export const projects: Project[] = [
     tags: ["Federated Learning", "Adaptive Optimization"],
     status: "Active",
     featured: false,
-    github: null,
+    github: "https://github.com/hwangsresearch/AdaFed",
   },
   {
     id: "prism",
