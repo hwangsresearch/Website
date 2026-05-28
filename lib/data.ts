@@ -102,13 +102,13 @@ export const projects: Project[] = [
   {
     id: "ci-fl",
     name: "CI-FL",
-    tagline: "Continual & Incremental Federated Learning",
+    tagline: "Cache-Inspired Federated Learning",
     description:
-      "Federated learning framework supporting continual and incremental client participation while preserving model stability and privacy guarantees.",
-    tags: ["Federated Learning", "Continual Learning", "Privacy"],
+      "Cache-inspired federated learning framework for efficient communication and scalable edge intelligence.",
+    tags: ["Federated Learning", "Communication Efficiency", "Edge Intelligence"],
     status: "Active",
     featured: true,
-    github: null,
+    github: "https://github.com/hwangsresearch/CI-FL",
   },
   {
     id: "h2pfuser",
