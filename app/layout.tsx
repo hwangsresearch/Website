@@ -23,6 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hwangresearch.com"),
   title: "Hwang's Research — Research Beyond Boundaries",
   description:
     "An independent research organization advancing intelligent systems, autonomous driving, quantum computing, and federated learning.",
@@ -35,10 +36,30 @@ export const metadata: Metadata = {
     "Research Lab",
   ],
   authors: [{ name: "Sunjun Hwang" }],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "Hwang's Research",
     description: "Research Beyond Boundaries",
+    url: "https://hwangresearch.com",
+    siteName: "Hwang's Research",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 600,
+        height: 600,
+        alt: "Hwang's Research",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Hwang's Research",
+    description: "Research Beyond Boundaries",
+    images: ["/logo.png"],
   },
 };
 
