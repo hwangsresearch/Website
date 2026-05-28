@@ -11,7 +11,8 @@ export type ResearchArea = {
     | "Cpu"
     | "Bot"
     | "ShieldCheck"
-    | "Smartphone";
+    | "Smartphone"
+    | "LineChart";
 };
 
 export const researchAreas: ResearchArea[] = [
@@ -85,6 +86,16 @@ export const researchAreas: ResearchArea[] = [
     tags: ["compression", "quantization", "efficiency"],
     icon: "Smartphone",
   },
+  {
+    id: "time-series-forecasting",
+    title: "Time-Series Forecasting",
+    description:
+      "New architectures for forecasting sequential data — efficiency, accuracy, and adaptation across non-stationary domains.",
+    longDescription:
+      "Time-series forecasting under real-world conditions: non-stationary distributions, multi-scale temporal dependencies, and the trade-off between long-context capacity and inference cost. We design new model architectures that target accuracy and efficiency together, with an eye on what actually deploys in production forecasting systems.",
+    tags: ["forecasting", "sequence modeling", "deep learning"],
+    icon: "LineChart",
+  },
 ];
 
 export type Project = {
@@ -142,6 +153,17 @@ export const projects: Project[] = [
     status: "Active",
     featured: false,
     github: "https://github.com/hwangsresearch/PRISM",
+  },
+  {
+    id: "nyra",
+    name: "NyRA",
+    tagline: "Time-Series Forecasting Model",
+    description:
+      "A new model architecture for time-series forecasting, exploring novel designs for sequential data prediction with a focus on accuracy and efficiency.",
+    tags: ["Time-Series Forecasting", "Sequence Modeling", "Deep Learning"],
+    status: "Research",
+    featured: false,
+    github: "https://github.com/hwangsresearch/NyRA",
   },
 ];
 

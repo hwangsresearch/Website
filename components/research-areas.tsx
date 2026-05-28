@@ -5,6 +5,7 @@ import {
   Bot,
   Car,
   Cpu,
+  LineChart,
   Network,
   ShieldCheck,
   Smartphone,
@@ -20,6 +21,7 @@ const iconMap = {
   Bot,
   ShieldCheck,
   Smartphone,
+  LineChart,
 } as const;
 
 export function ResearchAreas() {
