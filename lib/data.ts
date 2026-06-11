@@ -275,7 +275,6 @@ export const publications: Publication[] = [
     venueShort: "ICUFN 2026",
     year: 2026,
     status: "Accepted",
-    pdf: "/papers/adafed-icufn-2026.pdf",
     abstract:
       "We present a comprehensive empirical study of federated learning (FL) for seven heterogeneous autonomous driving models and propose AdaFed, an adaptive selective aggregation strategy. We introduce a tier-based partial backbone sharing framework that groups models by shared architectural components (ResNet-34/50 backbones, BEV encoders, and BEV-Lift modules) and evaluate six FL strategies: FedAvg, FedProx, SCAFFOLD, FedMD, FedDF, and AdaFed. Across all seven models, no FL strategy surpasses the per-model imitation-learning baseline; the practical question is therefore which strategy minimises degradation. AdaFed applies a tier-specific base strategy, blends aggregated and local weights with an adaptive coefficient, and reverts any round-level update that worsens validation error. Experiments on CARLA 0.9.16 reveal that partial backbone averaging stays closest to the IL baseline for ResNet-50 models, knowledge-distillation approaches degrade performance, and AdaFed yields the best FL result for the two models most exposed to negative transfer — VAD and UniAD. These findings provide practical guidelines for heterogeneous FL deployment in autonomous driving.",
     tags: [
