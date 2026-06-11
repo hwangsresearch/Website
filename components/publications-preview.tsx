@@ -46,6 +46,11 @@ export function PublicationsPreview() {
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-secondary">
                   {pub.venueShort}
                 </span>
+                {pub.status === "Accepted" && (
+                  <span className="ml-1 font-mono text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent/10 text-accent-soft border border-accent/20">
+                    Accepted
+                  </span>
+                )}
               </div>
               <h3 className="font-display text-lg lg:text-xl font-semibold leading-snug mb-2 group-hover:text-accent-soft transition-colors">
                 {pub.title}

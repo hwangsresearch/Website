@@ -135,10 +135,15 @@ export const projects: Project[] = [
   {
     id: "adafed",
     name: "AdaFed",
-    tagline: "Adaptive Federated Learning",
+    tagline: "Adaptive Selective Aggregation for Heterogeneous FL",
     description:
-      "Adaptive aggregation and client-side optimization for federated learning under heterogeneous data and compute.",
-    tags: ["Federated Learning", "Adaptive Optimization"],
+      "Adaptive selective aggregation strategy for federated learning across heterogeneous model architectures. Tier-based partial backbone sharing with adaptive blending and validation-based rollback to mitigate negative transfer — evaluated on a fleet of seven autonomous driving models in CARLA.",
+    tags: [
+      "Federated Learning",
+      "Autonomous Driving",
+      "Heterogeneous Models",
+      "Adaptive Aggregation",
+    ],
     status: "Active",
     featured: false,
     github: "https://github.com/hwangsresearch/AdaFed",
@@ -236,9 +241,51 @@ export type Publication = {
   pdf?: string;
   abstract: string;
   tags: string[];
+  status?: "Accepted" | "Published";
 };
 
 export const publications: Publication[] = [
+  {
+    id: "h2c-tda-cancer-coins-2026",
+    title:
+      "H2C: A Pan-Cancer Gene Panel Discovered via Persistent Homology in Topological Autoencoder Latent Space",
+    authors: ["Sunjun Hwang", "Dohyun Hwang", "Eunho Choi"],
+    venue:
+      "2026 IEEE International Conference on Omni-Layer Intelligent Systems",
+    venueShort: "IEEE COINS 2026",
+    year: 2026,
+    status: "Accepted",
+    abstract:
+      "RNA-seq-based cancer biomarker discovery predominantly relies on Euclidean statistics such as t-tests and fold-change analysis, which cannot capture multivariate nonlinear interactions among genes. We propose a pipeline combining Topological Autoencoders (TAE) with Persistent Homology (PH) to analyze the topological structure of gene expression data. Applied to TCGA-BRCA (1,215 samples, 20,862 genes), our pipeline encodes RNA-seq profiles into a 32-dimensional latent space with topology-preserving constraints and computes Vietoris–Rips persistent homology. Size-matched permutation tests show that tumor samples exhibit approximately 2.5× more H1 loops than normal samples (p < 0.001). Through decoder Jacobian-based gene traceback, we identify 37 genes (the H2C panel) that rank within the TDA top 200 yet are not significant under standard univariate analysis. H2C achieves strong classification performance (AUC = 0.993 for BRCA, AUC = 0.977 for pan-cancer across 33 cancer types) and significant prognostic value (log-rank p = 2.03×10⁻⁷). These results suggest TDA provides a complementary perspective for identifying cancer-associated signals beyond standard Euclidean analysis.",
+    tags: [
+      "Topological Data Analysis",
+      "Persistent Homology",
+      "Cancer Genomics",
+      "Autoencoder",
+      "RNA-seq",
+    ],
+  },
+  {
+    id: "adafed-heterogeneous-fl-icufn-2026",
+    title:
+      "AdaFed: Adaptive Selective Aggregation for Heterogeneous Federated Learning in Autonomous Driving",
+    authors: ["Sunjun Hwang", "Dohyun Hwang"],
+    venue:
+      "2026 International Conference on Ubiquitous and Future Networks",
+    venueShort: "ICUFN 2026",
+    year: 2026,
+    status: "Accepted",
+    pdf: "/papers/adafed-icufn-2026.pdf",
+    abstract:
+      "We present a comprehensive empirical study of federated learning (FL) for seven heterogeneous autonomous driving models and propose AdaFed, an adaptive selective aggregation strategy. We introduce a tier-based partial backbone sharing framework that groups models by shared architectural components (ResNet-34/50 backbones, BEV encoders, and BEV-Lift modules) and evaluate six FL strategies: FedAvg, FedProx, SCAFFOLD, FedMD, FedDF, and AdaFed. Across all seven models, no FL strategy surpasses the per-model imitation-learning baseline; the practical question is therefore which strategy minimises degradation. AdaFed applies a tier-specific base strategy, blends aggregated and local weights with an adaptive coefficient, and reverts any round-level update that worsens validation error. Experiments on CARLA 0.9.16 reveal that partial backbone averaging stays closest to the IL baseline for ResNet-50 models, knowledge-distillation approaches degrade performance, and AdaFed yields the best FL result for the two models most exposed to negative transfer — VAD and UniAD. These findings provide practical guidelines for heterogeneous FL deployment in autonomous driving.",
+    tags: [
+      "Federated Learning",
+      "Autonomous Driving",
+      "Heterogeneous Models",
+      "Adaptive Aggregation",
+      "CARLA",
+    ],
+  },
   {
     id: "amc-adversarial-robustness-icaiic-2026",
     title:
@@ -250,6 +297,7 @@ export const publications: Publication[] = [
     year: 2026,
     month: "February",
     location: "Tokyo, Japan",
+    status: "Published",
     doi: "10.1109/ICAIIC68212.2026.11454198",
     url: "https://ieeexplore.ieee.org/document/11454198",
     abstract:

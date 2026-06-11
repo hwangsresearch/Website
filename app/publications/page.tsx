@@ -54,6 +54,11 @@ function PublicationCard({ pub }: { pub: Publication }) {
             </span>
           </>
         )}
+        {pub.status === "Accepted" && (
+          <span className="ml-1 font-mono text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent/10 text-accent-soft border border-accent/20">
+            Accepted
+          </span>
+        )}
       </div>
 
       <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight leading-tight mb-4">
