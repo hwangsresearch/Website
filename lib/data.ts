@@ -246,6 +246,24 @@ export type Publication = {
 
 export const publications: Publication[] = [
   {
+    id: "pseudobulk-vs-topological-ad-ckaia-2026",
+    title:
+      "Simple Pseudobulk Outperforms Topological and Quantum-Geometric Readouts of Single-Nucleus Chromatin and Transcriptomes for Donor-Level Alzheimer's Classification: A Rigorous Benchmark in a Powered Multiome Cohort",
+    authors: ["Sunjun Hwang", "Dohyun Hwang"],
+    venue: "2026 Conference of the Korea Artificial Intelligence Association",
+    venueShort: "CKAIA 2026",
+    year: 2026,
+    abstract:
+      "Topological data analysis and quantum-geometric distances have been proposed as donor-level readouts of single-cell disease state, on the premise that the geometry and shape of a cell-state manifold within a cell type carry information that simple pseudobulk averaging discards. We tested this premise rigorously in a powered, openly available Alzheimer's disease multiome cohort with 111 donors, 6 brain regions, and over 2.2 million transcriptomic and 1.2 million chromatin nuclei. We first established that donor-level pathology is genuinely detectable: RNA pseudobulk classified late-AD versus non-AD donors at AUC 0.86, and chromatin pseudobulk reached AUC 0.91 in excitatory neurons, with consistent positive controls. We then benchmarked persistent-homology features under classical and quantum-geometric distances, on both a standard latent and a learned geometry-preserving autoencoder latent. Under repeated cross-validation and covariate adjustment, simple pseudobulk-mean was the most robust readout across all six cell types; topological and quantum-geometric features performed at or near chance and never robustly exceeded pseudobulk. A single apparent win did not replicate under repeated cross-validation and collapsed to chance after sequencing-depth adjustment, illustrating how single-split evaluation and depth confounding can manufacture false topological signal. We conclude that parsimonious pseudobulk is the appropriate baseline for this task, and that topological readouts require this baseline, repeated cross-validation, and depth control before any claim of added value.",
+    tags: [
+      "Single-Cell Genomics",
+      "Alzheimer's Disease",
+      "Topological Data Analysis",
+      "Pseudobulk",
+      "Benchmark",
+    ],
+  },
+  {
     id: "h2c-tda-cancer-coins-2026",
     title:
       "H2C: A Pan-Cancer Gene Panel Discovered via Persistent Homology in Topological Autoencoder Latent Space",
