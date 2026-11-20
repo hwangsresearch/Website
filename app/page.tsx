@@ -22,8 +22,8 @@ export default function Home() {
       {/* Hero */}
       <section className="grain relative h-[100svh] min-h-[640px] overflow-hidden bg-ink text-ivory">
         <Video src="/videos/hero" pauseButton />
-        <div className="absolute inset-0 bg-ink/45" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-transparent to-ink" />
+        <div className="absolute inset-0 bg-ink/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/20 to-ink" />
 
         <div className="relative z-10 h-full max-w-6xl mx-auto px-6 lg:px-10 flex flex-col justify-end pb-28 lg:pb-32 text-center items-center">
           <div className="caps text-brass animate-rise [animation-delay:200ms]">
