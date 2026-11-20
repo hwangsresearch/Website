@@ -172,10 +172,6 @@ export default function AboutPage() {
             attention from the people who designed it, from the first
             experiment to the released code.
           </P>
-          <P>
-            We also work with outside researchers. Eunho Choi co-authored our
-            H2C and ICAIIC 2026 papers.
-          </P>
         </>
       ),
     },
