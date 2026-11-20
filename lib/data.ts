@@ -181,6 +181,7 @@ export const team: Member[] = [
     bio: "Co-author on each of the laboratory's publications, working on experiments and system development across federated learning, autonomous driving, genomics, and adversarial robustness.",
     areas: ["Federated Learning", "Autonomous Driving", "Computational Biology", "Robustness"],
     links: [
+      { label: "Google Scholar", href: "https://scholar.google.com/citations?user=zU73WlUAAAAJ" },
       { label: "GitHub", href: "https://github.com/ezwez1203" },
       { label: "Website", href: "https://ezwez1203.github.io/myPortfolio/home" },
     ],
