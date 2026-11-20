@@ -189,7 +189,7 @@ export const team: Member[] = [
 ];
 
 export const contact = {
-  email: "sunjun7559@gmail.com",
+  email: "sunjun@hwangresearch.com",
   github: "https://github.com/hwangsresearch",
 };
 
