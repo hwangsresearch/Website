@@ -9,55 +9,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: {
-          base: "#0B0F14",
-          surface: "#131820",
-          raised: "#1B212C",
-        },
-        text: {
-          primary: "#F1F5F9",
-          secondary: "#94A3B8",
-          muted: "#64748B",
-        },
-        accent: {
-          DEFAULT: "#38BDF8",
-          deep: "#0EA5E9",
-          soft: "#7DD3FC",
-        },
+        ink: { DEFAULT: "#0E1116", soft: "#171B22" },
+        ivory: { DEFAULT: "#F4F0E8", deep: "#E8E2D6" },
+        stone: { DEFAULT: "#6F6A61", light: "#A39D92" },
+        brass: { DEFAULT: "#A8875A", deep: "#86693F" },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-      },
-      boxShadow: {
-        "glow-sm": "0 0 20px rgba(56, 189, 248, 0.18)",
-        glow: "0 0 40px rgba(56, 189, 248, 0.28)",
-        "glow-lg": "0 0 80px rgba(56, 189, 248, 0.35)",
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       animation: {
-        "fade-in": "fadeIn 0.6s ease-out forwards",
-        "fade-up": "fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "fade-up-slow": "fadeUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
-        "scroll-hint": "scrollHint 2s ease-in-out infinite",
+        rise: "rise 1.4s cubic-bezier(0.16, 1, 0.3, 1) both",
+        drift: "drift 2.4s ease-in-out infinite",
       },
       keyframes: {
-        fadeIn: {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        fadeUp: {
-          from: { opacity: "0", transform: "translateY(24px)" },
+        rise: {
+          from: { opacity: "0", transform: "translateY(16px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
-        pulseGlow: {
-          "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
-          "50%": { opacity: "1", transform: "scale(1.08)" },
-        },
-        scrollHint: {
-          "0%, 100%": { transform: "translateY(0)", opacity: "0.5" },
-          "50%": { transform: "translateY(6px)", opacity: "1" },
+        drift: {
+          "0%": { transform: "scaleY(0)", transformOrigin: "top" },
+          "50%": { transform: "scaleY(1)", transformOrigin: "top" },
+          "51%": { transform: "scaleY(1)", transformOrigin: "bottom" },
+          "100%": { transform: "scaleY(0)", transformOrigin: "bottom" },
         },
       },
     },

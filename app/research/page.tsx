@@ -1,44 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Atom,
-  Bot,
-  Car,
-  Cpu,
-  LineChart,
-  Network,
-  ShieldCheck,
-  Smartphone,
-} from "lucide-react";
 import { PageHeader } from "@/components/page-header";
+import { Video } from "@/components/video";
 import { researchAreas, projects } from "@/lib/data";
-
-const iconMap = {
-  Network,
-  Car,
-  Atom,
-  Cpu,
-  Bot,
-  ShieldCheck,
-  Smartphone,
-  LineChart,
-} as const;
 
 export const metadata: Metadata = {
   title: "Research — Hwang's Research",
   description:
-    "Research areas at Hwang's Research: federated learning, autonomous driving, quantum computing, AI systems, and more.",
+    "Fields of inquiry at Hwang's Research: federated learning, autonomous driving, time-series forecasting, quantum computing, and more.",
 };
 
 function relatedProjects(areaTitle: string) {
-  const lowerArea = areaTitle.toLowerCase();
-  return projects.filter((p) =>
-    p.tags.some((t) => {
-      const lowerTag = t.toLowerCase();
-      return lowerTag === lowerArea || lowerArea.includes(lowerTag);
-    })
-  );
+  const area = areaTitle.toLowerCase();
+  return projects.filter((p) => p.tags.some((t) => area.includes(t.toLowerCase())));
 }
 
 export default function ResearchPage() {
@@ -46,87 +20,59 @@ export default function ResearchPage() {
     <>
       <PageHeader
         label="Research"
-        title="Seven areas of active investigation."
-        description="From distributed learning to quantum simulation — the questions we keep coming back to, and how we pursue them."
+        title="Fields of inquiry."
+        description="The questions we keep returning to, and how we pursue them."
+        video="/videos/data"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-16 lg:pb-24">
-        <nav className="flex flex-wrap gap-2 mb-12 lg:mb-16 pb-8 border-b border-white/[0.05]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <nav className="flex flex-wrap gap-x-8 gap-y-3 pb-12 mb-4">
           {researchAreas.map((a) => (
-            <a
-              key={a.id}
-              href={`#${a.id}`}
-              className="font-mono text-xs uppercase tracking-wider px-3 py-1.5 rounded-md bg-bg-surface border border-white/10 text-text-secondary hover:border-accent/40 hover:text-accent transition-all"
-            >
+            <a key={a.id} href={`#${a.id}`} className="caps link-line pb-1 text-stone hover:text-ink">
               {a.title}
             </a>
           ))}
         </nav>
 
-        <div className="space-y-12 lg:space-y-20">
-          {researchAreas.map((area) => {
-            const Icon = iconMap[area.icon] ?? Cpu;
-            const related = relatedProjects(area.title);
-            return (
-              <section
-                key={area.id}
-                id={area.id}
-                className="scroll-mt-24 grid lg:grid-cols-12 gap-8 lg:gap-12"
-              >
-                <div className="lg:col-span-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-                      <Icon className="w-6 h-6" strokeWidth={1.5} />
-                    </div>
+        {researchAreas.map((area, i) => {
+          const related = relatedProjects(area.title);
+          return (
+            <section
+              key={area.id}
+              id={area.id}
+              className="scroll-mt-28 grid gap-8 lg:grid-cols-12 lg:gap-12 py-16 border-t border-ink/15"
+            >
+              <div className="lg:col-span-4">
+                <div className="caps text-brass-deep">{String(i + 1).padStart(2, "0")}</div>
+                <h2 className="font-serif font-light text-4xl lg:text-5xl leading-tight mt-3">{area.title}</h2>
+                <p className="mt-5 text-sm text-stone">{area.tags.join(" · ")}</p>
+                {area.video && (
+                  <div className="grain relative aspect-[4/3] mt-8 overflow-hidden bg-ink">
+                    <Video src={area.video} mode="hover" />
                   </div>
-                  <h2 className="font-display text-2xl lg:text-3xl font-semibold tracking-tight">
-                    {area.title}
-                  </h2>
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {area.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="font-mono text-[11px] px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/15"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="lg:col-span-8">
-                  <p className="text-base lg:text-lg text-text-secondary leading-relaxed mb-6">
-                    {area.longDescription}
-                  </p>
-
-                  {related.length > 0 && (
-                    <div>
-                      <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted mb-3">
-                        Related Projects
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {related.map((p) => (
-                          <Link
-                            key={p.id}
-                            href={`/projects#${p.id}`}
-                            className="group inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-bg-surface border border-white/[0.06] hover:border-accent/30 hover:bg-bg-raised transition-all"
-                          >
-                            <span className="font-display font-medium text-sm">
-                              {p.name}
-                            </span>
-                            <span className="text-xs text-text-muted">
-                              {p.tagline}
-                            </span>
-                            <ArrowRight className="w-3.5 h-3.5 text-text-muted group-hover:text-accent transition-colors" />
+                )}
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-lg lg:text-xl leading-relaxed text-ink/80">{area.longDescription}</p>
+                {related.length > 0 && (
+                  <div className="mt-10">
+                    <div className="caps text-stone mb-4">Related projects</div>
+                    <ul className="space-y-2">
+                      {related.map((p) => (
+                        <li key={p.id}>
+                          <Link href={`/projects#${p.id}`} className="group inline-flex items-baseline gap-3">
+                            <span className="font-serif text-2xl link-line">{p.name}</span>
+                            <span className="text-sm text-stone">{p.tagline}</span>
                           </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </section>
-            );
-          })}
-        </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </>
   );

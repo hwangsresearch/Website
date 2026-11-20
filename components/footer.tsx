@@ -1,83 +1,50 @@
 import Link from "next/link";
-import Image from "next/image";
-import { contact } from "@/lib/data";
+import { contact, navLinks } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] py-12 mt-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-10">
+    <footer className="bg-ink text-ivory">
+      <div className="max-w-6xl mx-auto px-6 lg:px-10 pt-20 pb-10">
+        <div className="grid gap-12 md:grid-cols-[1.4fr,1fr,1fr]">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 mb-3">
-              <Image
-                src="/logo.png"
-                alt="Hwang's Research"
-                width={32}
-                height={32}
-                className="rounded-md ring-1 ring-white/10"
-              />
-              <span className="font-display font-semibold text-sm">
-                Hwang&apos;s Research
-              </span>
-            </Link>
-            <p className="text-sm text-text-muted">Research Beyond Boundaries</p>
+            <div className="font-serif text-4xl font-light tracking-tight">Hwang&apos;s Research</div>
+            <div className="caps text-brass mt-3">Independent Laboratory · Est. 2025</div>
           </div>
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted mb-3">
-              Sitemap
-            </div>
-            <ul className="space-y-2 text-sm text-text-secondary">
-              <li>
-                <Link href="/about" className="hover:text-accent transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/research" className="hover:text-accent transition-colors">
-                  Research
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="hover:text-accent transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/team" className="hover:text-accent transition-colors">
-                  Team
-                </Link>
-              </li>
+            <div className="caps text-ivory/40 mb-5">Institute</div>
+            <ul className="space-y-3 text-sm text-ivory/75">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="link-line hover:text-ivory">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted mb-3">
-              Connect
-            </div>
-            <ul className="space-y-2 text-sm text-text-secondary">
+            <div className="caps text-ivory/40 mb-5">Correspondence</div>
+            <ul className="space-y-3 text-sm text-ivory/75">
               <li>
-                <a
-                  href={contact.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-accent transition-colors"
-                >
+                <a href={`mailto:${contact.email}`} className="link-line hover:text-ivory">
+                  {contact.email}
+                </a>
+              </li>
+              <li>
+                <a href={contact.github} target="_blank" rel="noopener noreferrer" className="link-line hover:text-ivory">
                   GitHub
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="hover:text-accent transition-colors"
-                >
-                  Email
-                </a>
+                <Link href="/contact" className="link-line hover:text-ivory">
+                  Collaboration
+                </Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-white/[0.05] flex flex-wrap justify-between gap-4 text-xs text-text-muted">
-          <div>© {new Date().getFullYear()} Hwang&apos;s Research. All rights reserved.</div>
-          <div>Built with Next.js · Deployed on Vercel</div>
+        <div className="mt-20 pt-6 border-t border-brass/30 text-xs text-ivory/40">
+          © {new Date().getFullYear()} Hwang&apos;s Research. All rights reserved.
         </div>
       </div>
     </footer>

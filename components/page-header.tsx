@@ -1,30 +1,33 @@
+import { Video } from "./video";
+import { SectionLabel } from "./section-label";
+
 export function PageHeader({
   label,
   title,
   description,
+  video,
 }: {
   label: string;
   title: string;
   description?: string;
+  video?: string;
 }) {
   return (
-    <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-20 overflow-hidden">
-      <div className="absolute inset-x-0 top-0 -z-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vw] max-w-[900px] rounded-full bg-accent/[0.08] blur-[100px]" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
-            {label}
-          </span>
-          <span className="h-px w-12 bg-gradient-to-r from-accent to-transparent" />
-        </div>
-        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight leading-[1.05] max-w-4xl">
+    <section className="grain relative overflow-hidden bg-ink text-ivory">
+      {video && (
+        <>
+          <Video src={video} />
+          <div className="absolute inset-0 bg-ink/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/60" />
+        </>
+      )}
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-10 pt-44 pb-24 lg:pt-56 lg:pb-32">
+        <SectionLabel dark>{label}</SectionLabel>
+        <h1 className="font-serif font-light text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight max-w-4xl animate-rise">
           {title}
         </h1>
         {description && (
-          <p className="mt-6 max-w-2xl text-base sm:text-lg text-text-secondary leading-relaxed">
+          <p className="mt-8 max-w-xl text-base lg:text-lg text-ivory/65 leading-relaxed">
             {description}
           </p>
         )}

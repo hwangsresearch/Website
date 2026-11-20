@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Github } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
-import { projects } from "@/lib/data";
+import { contact, projects, team } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Projects — Hwang's Research",
-  description:
-    "Active research projects at Hwang's Research: CI-FL, H2PFUser, AdaFed, PRISM.",
+  description: "Research projects and open-source repositories from Hwang's Research.",
 };
 
 export default function ProjectsPage() {
@@ -15,75 +12,55 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         label="Projects"
-        title="What we're building right now."
-        description="Active research projects across federated learning, autonomous driving, and quantum simulation."
+        title="Work in progress, in the open."
+        description="Each project ships with its code. Repositories are public as soon as their first stable interface lands."
+        video="/videos/typing"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-16 lg:pb-24">
-        <div className="grid lg:grid-cols-2 gap-4">
-          {projects.map((p) => (
-            <article
-              key={p.id}
-              id={p.id}
-              className="group relative scroll-mt-24 rounded-2xl bg-bg-surface border border-white/[0.05] hover:border-accent/30 hover:bg-bg-raised transition-all p-7 lg:p-8 hover:shadow-glow-sm overflow-hidden flex flex-col"
-            >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-40 group-hover:opacity-100 transition-opacity" />
-
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <div>
-                  <div className="flex items-center gap-3 mb-1.5 flex-wrap">
-                    <h2 className="font-display font-semibold text-2xl lg:text-3xl">
-                      {p.name}
-                    </h2>
-                    <span className="font-mono text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent/10 text-accent-soft border border-accent/20">
-                      {p.status}
-                    </span>
-                  </div>
-                  <p className="text-sm text-text-muted">{p.tagline}</p>
-                </div>
-              </div>
-
-              <p className="text-base text-text-secondary leading-relaxed mb-5">
-                {p.description}
-              </p>
-
-              <div className="flex flex-wrap gap-1.5 mb-6">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="font-mono text-[11px] px-2 py-0.5 rounded bg-white/[0.03] text-text-secondary border border-white/[0.06]"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-auto flex items-center gap-5 text-sm text-text-muted pt-4 border-t border-white/[0.05]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        {projects.map((p) => (
+          <article
+            key={p.id}
+            id={p.id}
+            className="scroll-mt-28 grid gap-6 lg:grid-cols-12 lg:gap-12 py-14 border-t border-ink/15"
+          >
+            <div className="lg:col-span-4">
+              <h2 className="font-serif text-5xl">{p.name}</h2>
+              <div className="caps text-brass-deep mt-4">{p.status}</div>
+            </div>
+            <div className="lg:col-span-8">
+              <p className="font-serif italic text-2xl text-ink/80">{p.tagline}</p>
+              <p className="mt-4 text-lg leading-relaxed text-stone">{p.description}</p>
+              <p className="mt-5 text-sm text-stone">{p.tags.join(" · ")}</p>
+              <div className="mt-6 text-sm">
                 {p.github ? (
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
-                  >
-                    <Github className="w-4 h-4" /> Code
+                  <a href={p.github} target="_blank" rel="noopener noreferrer" className="caps link-line pb-1 text-brass-deep">
+                    View repository ↗
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 text-text-muted/60">
-                    <Github className="w-4 h-4" /> Code coming soon
-                  </span>
+                  <span className="caps text-stone/70">Repository forthcoming</span>
                 )}
-                <Link
-                  href="/research"
-                  className="inline-flex items-center gap-1.5 hover:text-accent transition-colors ml-auto"
-                >
-                  Related research
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
+
+        <section className="grid gap-6 lg:grid-cols-12 lg:gap-12 py-14 border-t border-ink/15">
+          <div className="lg:col-span-4 caps text-brass-deep">Repositories</div>
+          <div className="lg:col-span-8 space-y-3 text-lg">
+            <a href={contact.github} target="_blank" rel="noopener noreferrer" className="block link-line w-fit">
+              Laboratory organisation: {contact.github.replace("https://", "")} ↗
+            </a>
+            {team.map((m) => {
+              const gh = m.links.find((l) => l.label === "GitHub");
+              return gh ? (
+                <a key={m.id} href={gh.href} target="_blank" rel="noopener noreferrer" className="block link-line w-fit text-stone hover:text-ink">
+                  {m.name}: {gh.href.replace("https://", "")} ↗
+                </a>
+              ) : null;
+            })}
+          </div>
+        </section>
       </div>
     </>
   );

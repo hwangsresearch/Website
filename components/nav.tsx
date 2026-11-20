@@ -2,103 +2,82 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Github, Menu, X } from "lucide-react";
-import { contact } from "@/lib/data";
-
-const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/research", label: "Research" },
-  { href: "/projects", label: "Projects" },
-  { href: "/publications", label: "Publications" },
-  { href: "/team", label: "Team" },
-  { href: "/open-source", label: "Open Source" },
-  { href: "/contact", label: "Contact" },
-];
+import { usePathname } from "next/navigation";
+import { navLinks } from "@/lib/data";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => setOpen(false), [pathname]);
+
+  // Every page opens on a dark band, so the bar is light-on-dark until scrolled.
+  const solid = scrolled && !open;
+
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-bg-base/70 backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-500 ${
+        solid ? "bg-ivory/95 backdrop-blur text-ink border-b border-ink/10" : "text-ivory"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <Image
-            src="/logo.png"
-            alt="Hwang's Research"
-            width={32}
-            height={32}
-            className="rounded-md ring-1 ring-white/10 group-hover:ring-accent/40 transition"
-          />
-          <span className="font-display font-semibold text-sm tracking-tight">
-            Hwang&apos;s Research
+      <div className="max-w-6xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+        <Link href="/" className="flex items-baseline gap-3">
+          <span className="font-serif text-2xl tracking-tight">Hwang&apos;s Research</span>
+          <span className={`caps hidden sm:inline ${solid ? "text-brass-deep" : "text-brass"}`}>
+            Est. 2025
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-0.5">
+        <nav className="hidden lg:flex items-center gap-9">
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="px-3 py-2 text-sm text-text-secondary hover:text-text-primary transition-colors"
+              className={`caps link-line pb-1 transition-opacity ${
+                pathname.startsWith(l.href) ? "opacity-100" : "opacity-70 hover:opacity-100"
+              }`}
             >
               {l.label}
             </Link>
           ))}
-          <a
-            href={contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-white/10 text-sm text-text-secondary hover:border-accent/40 hover:text-accent transition-all"
+          <Link
+            href="/contact"
+            className={`caps px-5 py-2.5 border transition-colors ${
+              solid
+                ? "border-ink/30 hover:bg-ink hover:text-ivory"
+                : "border-ivory/40 hover:bg-ivory hover:text-ink"
+            }`}
           >
-            <Github className="w-4 h-4" /> GitHub
-          </a>
+            Contact
+          </Link>
         </nav>
 
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden p-2 text-text-secondary"
+          className="caps lg:hidden"
+          aria-expanded={open}
           aria-label="Toggle menu"
         >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {open ? "Close" : "Menu"}
         </button>
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/[0.06] bg-bg-base/95 backdrop-blur-xl">
-          <nav className="px-6 py-4 flex flex-col gap-1">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2 text-sm text-text-secondary hover:text-text-primary"
-              >
+        <div className="lg:hidden fixed inset-0 top-20 bg-ink text-ivory">
+          <nav className="px-6 pt-10 flex flex-col gap-6">
+            {[...navLinks, { href: "/contact", label: "Contact" }].map((l) => (
+              <Link key={l.href} href={l.href} className="font-serif text-4xl font-light">
                 {l.label}
               </Link>
             ))}
-            <a
-              href={contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex items-center gap-1.5 py-2 text-sm text-text-secondary hover:text-accent"
-            >
-              <Github className="w-4 h-4" /> GitHub
-            </a>
           </nav>
         </div>
       )}

@@ -1,79 +1,60 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 
-const inter = Inter({
+const serif = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const sans = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+const description =
+  "An independent research laboratory, established 2025. Federated learning, autonomous driving, time-series forecasting, and quantum computation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hwangresearch.com"),
-  title: "Hwang's Research — Research Beyond Boundaries",
-  description:
-    "An independent research organization advancing intelligent systems, autonomous driving, quantum computing, and federated learning.",
+  title: "Hwang's Research",
+  description,
   keywords: [
     "Hwang's Research",
-    "AI Systems",
     "Federated Learning",
     "Autonomous Driving",
+    "Time-Series Forecasting",
     "Quantum Computing",
-    "Research Lab",
+    "Research Laboratory",
   ],
   authors: [{ name: "Sunjun Hwang" }],
-  icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
-  },
+  icons: { icon: "/logo.png", apple: "/logo.png" },
   openGraph: {
     title: "Hwang's Research",
-    description: "Research Beyond Boundaries",
+    description,
     url: "https://hwangresearch.com",
     siteName: "Hwang's Research",
     type: "website",
-    images: [
-      {
-        url: "/logo.png",
-        width: 600,
-        height: 600,
-        alt: "Hwang's Research",
-      },
-    ],
+    images: [{ url: "/videos/hero.jpg", width: 1536, height: 864, alt: "Hwang's Research" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Hwang's Research",
-    description: "Research Beyond Boundaries",
-    images: ["/logo.png"],
+    description,
+    images: ["/videos/hero.jpg"],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="bg-bg-base text-text-primary font-sans antialiased min-h-screen flex flex-col">
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <body className="bg-ivory text-ink font-sans antialiased min-h-screen flex flex-col">
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

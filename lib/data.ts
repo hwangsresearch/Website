@@ -1,18 +1,18 @@
+export const navLinks = [
+  { href: "/about", label: "About" },
+  { href: "/research", label: "Research" },
+  { href: "/projects", label: "Projects" },
+  { href: "/publications", label: "Publications" },
+  { href: "/team", label: "People" },
+];
+
 export type ResearchArea = {
   id: string;
   title: string;
   description: string;
   longDescription: string;
   tags: string[];
-  icon:
-    | "Network"
-    | "Car"
-    | "Atom"
-    | "Cpu"
-    | "Bot"
-    | "ShieldCheck"
-    | "Smartphone"
-    | "LineChart";
+  video?: string; // shown as a featured field on the home page
 };
 
 export const researchAreas: ResearchArea[] = [
@@ -24,7 +24,7 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "We train models across many clients without raw data leaving the device. Our work focuses on adaptive aggregation under heterogeneous data, continual and incremental client participation, and communication-efficient protocols that scale to thousands of edge nodes. We treat federated learning as a systems problem as much as an optimization one.",
     tags: ["distributed", "privacy", "optimization", "continual"],
-    icon: "Network",
+    video: "/videos/typing",
   },
   {
     id: "autonomous-driving",
@@ -34,7 +34,7 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "End-to-end autonomous driving stacks built on modern sequence models. We're exploring Mamba-based state-space architectures as a more efficient alternative to attention for long-horizon perception and planning — preserving accuracy at a fraction of the compute cost, which is what real on-vehicle deployment demands.",
     tags: ["perception", "planning", "SSM", "Mamba"],
-    icon: "Car",
+    video: "/videos/driving",
   },
   {
     id: "quantum-computing",
@@ -44,7 +44,6 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "Quantum algorithm prototyping and circuit simulation for the era of hybrid classical-quantum systems. Our PRISM simulator focuses on making it easy to express and test variational and gate-based algorithms before deploying to real hardware, with a workflow geared toward researchers rather than vendors.",
     tags: ["algorithms", "simulation", "variational", "hybrid"],
-    icon: "Atom",
   },
   {
     id: "ai-systems",
@@ -54,7 +53,6 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "The infrastructure layer of modern AI — scalable training, inference engines, and serving platforms. We work on the systems plumbing that lets research move at the speed of ideas rather than the speed of GPUs.",
     tags: ["systems", "inference", "training", "scale"],
-    icon: "Cpu",
   },
   {
     id: "ai-agents",
@@ -64,7 +62,6 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "Multi-agent systems that combine foundation models with tools, memory, and structured reasoning. We're interested in what changes when agents can call into each other and operate over longer time horizons than a single chat turn — including the evaluation problem that comes with it.",
     tags: ["LLM", "tools", "reasoning", "evaluation"],
-    icon: "Bot",
   },
   {
     id: "security",
@@ -74,7 +71,6 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "Robust and secure machine learning — adversarial resilience, secure aggregation in federated settings, and verifiable privacy guarantees for systems that handle sensitive data. Security as a first-class research concern, not an afterthought.",
     tags: ["adversarial", "privacy", "verification"],
-    icon: "ShieldCheck",
   },
   {
     id: "edge-ai",
@@ -84,7 +80,6 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "On-device intelligence under tight compute, memory, and energy constraints. Model compression, quantization, and architecture search for hardware that runs on milliwatts — the kind of work that decides whether an idea actually deploys.",
     tags: ["compression", "quantization", "efficiency"],
-    icon: "Smartphone",
   },
   {
     id: "time-series-forecasting",
@@ -94,7 +89,7 @@ export const researchAreas: ResearchArea[] = [
     longDescription:
       "Time-series forecasting under real-world conditions: non-stationary distributions, multi-scale temporal dependencies, and the trade-off between long-context capacity and inference cost. We design new model architectures that target accuracy and efficiency together, with an eye on what actually deploys in production forecasting systems.",
     tags: ["forecasting", "sequence modeling", "deep learning"],
-    icon: "LineChart",
+    video: "/videos/data",
   },
 ];
 

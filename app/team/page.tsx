@@ -1,92 +1,60 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { team } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Team — Hwang's Research",
-  description: "The people behind Hwang's Research.",
+  title: "People — Hwang's Research",
+  description: "The researchers of Hwang's Research.",
 };
 
 export default function TeamPage() {
   return (
     <>
       <PageHeader
-        label="Team"
-        title="The people behind the work."
-        description="A small, deliberately focused lab. The list below is the entire team."
+        label="People"
+        title="The researchers."
+        description="A deliberately small laboratory. The two people below are the whole of it."
+        video="/videos/hero"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-16 lg:pb-24">
-        <div className="space-y-6">
-          {team.map((m) => (
-            <article
-              key={m.id}
-              className="group rounded-2xl bg-bg-surface border border-white/[0.05] hover:border-accent/30 transition-all p-6 sm:p-8 lg:p-10"
-            >
-              <div className="grid sm:grid-cols-[auto,1fr] gap-6 lg:gap-10">
-                <div className="relative shrink-0 mx-auto sm:mx-0">
-                  <div className="absolute inset-0 bg-accent/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Image
-                    src={m.avatar}
-                    alt={m.name}
-                    width={140}
-                    height={140}
-                    className="relative rounded-2xl object-cover ring-1 ring-white/10"
-                    style={{ width: 140, height: 140 }}
-                  />
-                </div>
-                <div>
-                  <h2 className="font-display font-semibold text-2xl lg:text-3xl">
-                    {m.name}
-                  </h2>
-                  <p className="text-accent mt-1 font-medium">{m.role}</p>
-
-                  <p className="mt-5 text-base text-text-secondary leading-relaxed">
-                    {m.bio}
-                  </p>
-
-                  <div className="mt-6">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted mb-2">
-                      Research Areas
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {m.areas.map((a) => (
-                        <span
-                          key={a}
-                          className="font-mono text-[11px] px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/15"
-                        >
-                          {a}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted mb-2">
-                      Links
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {m.links.map((l) => (
-                        <a
-                          key={l.href}
-                          href={l.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-mono border border-white/10 text-text-secondary hover:border-accent/40 hover:text-accent transition-all"
-                        >
-                          {l.label}
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+      <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        {team.map((m) => (
+          <article
+            key={m.id}
+            id={m.id}
+            className="scroll-mt-28 grid gap-10 md:grid-cols-12 md:gap-14 py-16 border-t border-ink/15 first:border-t-0"
+          >
+            <div className="md:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
+                <Image
+                  src={m.avatar}
+                  alt={m.name}
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover object-top grayscale contrast-[1.05]"
+                />
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+            <div className="md:col-span-7 md:pt-6">
+              <div className="caps text-brass-deep">{m.role}</div>
+              <h2 className="font-serif font-light text-5xl lg:text-6xl mt-3">{m.name}</h2>
+              <p className="mt-8 text-lg leading-relaxed text-stone">{m.bio}</p>
+
+              <div className="caps text-stone mt-10 mb-3">Areas</div>
+              <p className="font-serif text-xl">{m.areas.join(" · ")}</p>
+
+              <div className="caps text-stone mt-10 mb-3">Elsewhere</div>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                {m.links.map((l) => (
+                  <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="link-line border-b border-ink/20 hover:border-transparent">
+                    {l.label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </>
   );
