@@ -48,7 +48,7 @@ export function Video({
         aria-hidden="true"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-        className={`absolute inset-0 h-full w-full object-cover ${className}`}
+        className={`absolute inset-0 h-full w-full object-cover brightness-[0.7] ${className}`}
         {...hover}
       />
       {pauseButton && (
