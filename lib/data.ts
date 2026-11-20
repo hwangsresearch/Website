@@ -167,7 +167,11 @@ export const team: Member[] = [
     avatar: "/sunjun-hwang.png",
     bio: "Founded Hwang's Research in 2025 and sets its research direction, working on federated learning across heterogeneous models, Mamba-based autonomous driving, topological analysis of genomic data, and quantum simulation. First author on all of the laboratory's papers to date.",
     areas: ["Federated Learning", "Autonomous Driving", "Computational Biology", "Quantum Computing"],
-    links: [{ label: "Website", href: "https://www.sjhwang.com/" }],
+    links: [
+      { label: "Website", href: "https://www.sjhwang.com/" },
+      { label: "Google Scholar", href: "https://scholar.google.com/citations?user=6X2EVE0AAAAJ" },
+      { label: "GitHub", href: "https://github.com/justinbrianhwang" },
+    ],
   },
   {
     id: "dohyun-hwang",
