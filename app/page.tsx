@@ -3,19 +3,15 @@ import Link from "next/link";
 import { Video } from "@/components/video";
 import { SectionLabel } from "@/components/section-label";
 import { PublicationEntry } from "@/components/publication-entry";
-import { contact, projects, publications, researchAreas, team } from "@/lib/data";
+import { contact, publications, researchAreas, team } from "@/lib/data";
 
 export default function Home() {
   const featured = researchAreas.filter((a) => a.video);
   const others = researchAreas.filter((a) => !a.video);
   const recent = [...publications].sort((a, b) => b.year - a.year).slice(0, 3);
 
-  const facts = [
-    { value: "2025", label: "Established" },
-    { value: String(publications.length), label: "Publications" },
-    { value: String(projects.length), label: "Research projects" },
-    { value: String(projects.filter((p) => p.github).length), label: "Open repositories" },
-  ];
+  // "IEEE COINS 2026" -> "IEEE COINS"
+  const venues = Array.from(new Set(publications.map((p) => p.venueShort.replace(/\s*\d{4}$/, ""))));
 
   return (
     <>
@@ -54,14 +50,17 @@ export default function Home() {
           Our approach →
         </Link>
 
-        <dl className="mt-24 grid grid-cols-2 lg:grid-cols-4 border-t border-ink/15">
-          {facts.map((f) => (
-            <div key={f.label} className="flex flex-col-reverse pt-8 pb-2 pr-6">
-              <dt className="caps text-stone">{f.label}</dt>
-              <dd className="font-serif font-light text-6xl mb-3">{f.value}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className="mt-24 pt-8 border-t border-ink/15">
+          <div className="caps text-stone">Presented at</div>
+          <p className="mt-4 font-serif text-3xl lg:text-4xl font-light">
+            {venues.map((v, i) => (
+              <span key={v}>
+                {v}
+                {i < venues.length - 1 && <span className="mx-4 text-brass-deep">·</span>}
+              </span>
+            ))}
+          </p>
+        </div>
       </section>
 
       {/* Fields of inquiry */}
@@ -112,7 +111,7 @@ export default function Home() {
 
       {/* Interlude */}
       <section className="grain relative h-[80svh] min-h-[520px] overflow-hidden bg-ink text-ivory">
-        <Video src="/videos/discussion" />
+        <Video src="/videos/data" />
         <div className="absolute inset-0 bg-ink/55" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
           <blockquote className="font-serif font-light italic text-4xl sm:text-5xl lg:text-6xl leading-tight max-w-3xl">
@@ -147,7 +146,7 @@ export default function Home() {
           <h2 className="font-serif font-light text-5xl lg:text-6xl tracking-tight mb-16">
             The researchers.
           </h2>
-          <div className="grid gap-16 md:grid-cols-2 md:gap-12">
+          <div className="grid gap-16 sm:grid-cols-2 sm:gap-12 max-w-2xl">
             {team.map((m) => (
               <Link key={m.id} href={`/team#${m.id}`} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
@@ -155,12 +154,12 @@ export default function Home() {
                     src={m.avatar}
                     alt={m.name}
                     fill
-                    sizes="(min-width: 768px) 40vw, 100vw"
+                    sizes="(min-width: 640px) 320px, 100vw"
                     className="object-cover object-top grayscale contrast-[1.05] transition duration-[1.2s] group-hover:grayscale-0 group-hover:scale-[1.02]"
                   />
                 </div>
                 <div className="caps text-brass-deep mt-6">{m.role}</div>
-                <h3 className="font-serif text-4xl mt-2">{m.name}</h3>
+                <h3 className="font-serif text-3xl mt-2">{m.name}</h3>
                 <p className="mt-3 text-sm text-stone">{m.areas.join(" · ")}</p>
               </Link>
             ))}

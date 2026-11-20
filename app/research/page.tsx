@@ -7,7 +7,7 @@ import { researchAreas, projects } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Research — Hwang's Research",
   description:
-    "Fields of inquiry at Hwang's Research: federated learning, autonomous driving, time-series forecasting, quantum computing, and more.",
+    "Fields of inquiry at Hwang's Research: federated learning, autonomous driving, time-series forecasting, computational biology, robustness, and quantum computing.",
 };
 
 function relatedProjects(areaTitle: string) {

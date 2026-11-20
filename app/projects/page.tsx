@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
-import { contact, projects, team } from "@/lib/data";
+import { contact, projects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Projects — Hwang's Research",
@@ -47,18 +47,10 @@ export default function ProjectsPage() {
 
         <section className="grid gap-6 lg:grid-cols-12 lg:gap-12 py-14 border-t border-ink/15">
           <div className="lg:col-span-4 caps text-brass-deep">Repositories</div>
-          <div className="lg:col-span-8 space-y-3 text-lg">
-            <a href={contact.github} target="_blank" rel="noopener noreferrer" className="block link-line w-fit">
-              Laboratory organisation: {contact.github.replace("https://", "")} ↗
+          <div className="lg:col-span-8 text-lg">
+            <a href={contact.github} target="_blank" rel="noopener noreferrer" className="link-line">
+              {contact.github.replace("https://", "")} ↗
             </a>
-            {team.map((m) => {
-              const gh = m.links.find((l) => l.label === "GitHub");
-              return gh ? (
-                <a key={m.id} href={gh.href} target="_blank" rel="noopener noreferrer" className="block link-line w-fit text-stone hover:text-ink">
-                  {m.name}: {gh.href.replace("https://", "")} ↗
-                </a>
-              ) : null;
-            })}
           </div>
         </section>
       </div>

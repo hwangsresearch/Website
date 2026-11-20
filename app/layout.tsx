@@ -19,7 +19,7 @@ const sans = Hanken_Grotesk({
 });
 
 const description =
-  "An independent research laboratory, established 2025. Federated learning, autonomous driving, time-series forecasting, and quantum computation.";
+  "An independent research laboratory, established 2025. Federated learning, autonomous driving, time-series forecasting, computational biology, and quantum computation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hwangresearch.com"),

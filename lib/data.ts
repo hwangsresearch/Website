@@ -20,76 +20,58 @@ export const researchAreas: ResearchArea[] = [
     id: "federated-learning",
     title: "Federated Learning",
     description:
-      "Privacy-preserving distributed learning across heterogeneous clients. Adaptive aggregation, continual participation, and communication efficiency.",
+      "Training one model across many clients whose data and architectures differ, without collecting the data.",
     longDescription:
-      "We train models across many clients without raw data leaving the device. Our work focuses on adaptive aggregation under heterogeneous data, continual and incremental client participation, and communication-efficient protocols that scale to thousands of edge nodes. We treat federated learning as a systems problem as much as an optimization one.",
-    tags: ["distributed", "privacy", "optimization", "continual"],
+      "We study federated learning when clients are genuinely different: different data, different model architectures, different participation patterns. AdaFed examined seven heterogeneous driving models and found that no aggregation strategy beat local training, so the useful question became which one loses the least. CI-FL borrows ideas from caching to reduce communication between rounds.",
+    tags: ["heterogeneity", "aggregation", "communication"],
     video: "/videos/typing",
   },
   {
     id: "autonomous-driving",
     title: "Autonomous Driving",
     description:
-      "Mamba state-space models for efficient long-horizon perception and planning in end-to-end autonomous systems.",
+      "End-to-end driving models built on state-space sequence models, evaluated in closed loop in CARLA.",
     longDescription:
-      "End-to-end autonomous driving stacks built on modern sequence models. We're exploring Mamba-based state-space architectures as a more efficient alternative to attention for long-horizon perception and planning — preserving accuracy at a fraction of the compute cost, which is what real on-vehicle deployment demands.",
-    tags: ["perception", "planning", "SSM", "Mamba"],
+      "We build end-to-end driving stacks on Mamba state-space models, which handle long input sequences at lower cost than attention. H2PFUser is our main effort here. We evaluate in CARLA and report closed-loop results alongside the per-model baselines.",
+    tags: ["end-to-end", "Mamba", "CARLA"],
     video: "/videos/driving",
-  },
-  {
-    id: "quantum-computing",
-    title: "Quantum Computing",
-    description:
-      "Quantum circuit simulation and algorithm prototyping for hybrid classical-quantum workloads.",
-    longDescription:
-      "Quantum algorithm prototyping and circuit simulation for the era of hybrid classical-quantum systems. Our PRISM simulator focuses on making it easy to express and test variational and gate-based algorithms before deploying to real hardware, with a workflow geared toward researchers rather than vendors.",
-    tags: ["algorithms", "simulation", "variational", "hybrid"],
-  },
-  {
-    id: "ai-systems",
-    title: "AI Systems",
-    description:
-      "Scalable infrastructure and inference engines for training and serving large AI models efficiently.",
-    longDescription:
-      "The infrastructure layer of modern AI — scalable training, inference engines, and serving platforms. We work on the systems plumbing that lets research move at the speed of ideas rather than the speed of GPUs.",
-    tags: ["systems", "inference", "training", "scale"],
-  },
-  {
-    id: "ai-agents",
-    title: "AI Agents",
-    description:
-      "Multi-agent frameworks, tool use, and autonomous reasoning systems built on top of foundation models.",
-    longDescription:
-      "Multi-agent systems that combine foundation models with tools, memory, and structured reasoning. We're interested in what changes when agents can call into each other and operate over longer time horizons than a single chat turn — including the evaluation problem that comes with it.",
-    tags: ["LLM", "tools", "reasoning", "evaluation"],
-  },
-  {
-    id: "security",
-    title: "Security",
-    description:
-      "Robust and secure ML systems with adversarial resilience and verifiable privacy guarantees.",
-    longDescription:
-      "Robust and secure machine learning — adversarial resilience, secure aggregation in federated settings, and verifiable privacy guarantees for systems that handle sensitive data. Security as a first-class research concern, not an afterthought.",
-    tags: ["adversarial", "privacy", "verification"],
-  },
-  {
-    id: "edge-ai",
-    title: "Edge AI",
-    description:
-      "On-device inference, model compression, and resource-efficient learning for constrained environments.",
-    longDescription:
-      "On-device intelligence under tight compute, memory, and energy constraints. Model compression, quantization, and architecture search for hardware that runs on milliwatts — the kind of work that decides whether an idea actually deploys.",
-    tags: ["compression", "quantization", "efficiency"],
   },
   {
     id: "time-series-forecasting",
     title: "Time-Series Forecasting",
     description:
-      "New architectures for forecasting sequential data — efficiency, accuracy, and adaptation across non-stationary domains.",
+      "Forecasting architectures for non-stationary data, balancing context length against inference cost.",
     longDescription:
-      "Time-series forecasting under real-world conditions: non-stationary distributions, multi-scale temporal dependencies, and the trade-off between long-context capacity and inference cost. We design new model architectures that target accuracy and efficiency together, with an eye on what actually deploys in production forecasting systems.",
-    tags: ["forecasting", "sequence modeling", "deep learning"],
+      "Real forecasting data drifts over time and mixes short and long patterns. NyRA is a new architecture aimed at that setting. We measure accuracy and inference cost together, because a model that is accurate but too slow to run is of limited use.",
+    tags: ["forecasting", "sequence modelling"],
     video: "/videos/data",
+  },
+  {
+    id: "computational-biology",
+    title: "Computational Biology",
+    description:
+      "Topological data analysis of gene expression, and careful baselines for single-cell disease classification.",
+    longDescription:
+      "We apply topological data analysis to genomic data. H2C used persistent homology in an autoencoder latent space to find a 37-gene pan-cancer panel that standard univariate tests miss. Our CKAIA 2026 benchmark tested the same family of methods on Alzheimer's single-nucleus data and found that simple pseudobulk averaging did better. We report both results.",
+    tags: ["persistent homology", "RNA-seq", "single-cell"],
+  },
+  {
+    id: "security",
+    title: "Robustness & Security",
+    description:
+      "How deep learning models fail under adversarial input, and which defences actually help.",
+    longDescription:
+      "Our ICAIIC 2026 paper measured how a modulation classifier for wireless signals behaves under FGSM, DeepFool, and C&W attacks. Accuracy fell from 54% to 11% in the worst case. Adversarial training helped across attacks; a denoising autoencoder kept clean accuracy but did little against iterative attacks.",
+    tags: ["adversarial attacks", "defences", "wireless"],
+  },
+  {
+    id: "quantum-computing",
+    title: "Quantum Computing",
+    description:
+      "A qubit simulator for prototyping gate-based and variational algorithms before running on hardware.",
+    longDescription:
+      "PRISM is a qubit simulator we use to write and test gate-based and variational algorithms before moving them to real hardware. It is built for researchers trying out ideas, with a short path from an idea to a working circuit.",
+    tags: ["simulation", "variational algorithms"],
   },
 ];
 
@@ -110,7 +92,7 @@ export const projects: Project[] = [
     name: "CI-FL",
     tagline: "Cache-Inspired Federated Learning",
     description:
-      "Cache-inspired federated learning framework for efficient communication and scalable edge intelligence.",
+      "A federated learning framework that applies caching ideas to cut the communication needed between training rounds.",
     tags: ["Federated Learning", "Communication Efficiency", "Edge Intelligence"],
     status: "Active",
     featured: true,
@@ -132,7 +114,7 @@ export const projects: Project[] = [
     name: "AdaFed",
     tagline: "Adaptive Selective Aggregation for Heterogeneous FL",
     description:
-      "Adaptive selective aggregation strategy for federated learning across heterogeneous model architectures. Tier-based partial backbone sharing with adaptive blending and validation-based rollback to mitigate negative transfer — evaluated on a fleet of seven autonomous driving models in CARLA.",
+      "Selective aggregation for federated learning across models with different architectures. Models share only the backbone layers they have in common, blend shared and local weights adaptively, and roll back any round that makes validation worse. Evaluated on seven driving models in CARLA.",
     tags: [
       "Federated Learning",
       "Autonomous Driving",
@@ -148,7 +130,7 @@ export const projects: Project[] = [
     name: "PRISM",
     tagline: "Quantum Simulator",
     description:
-      "Quantum qubit simulator for quantum computing research and experimentation. Designed for algorithm prototyping and hybrid quantum-classical workloads.",
+      "A qubit simulator for prototyping quantum algorithms, including hybrid quantum-classical workloads.",
     tags: ["Quantum", "Simulation", "Algorithms"],
     status: "Active",
     featured: false,
@@ -159,7 +141,7 @@ export const projects: Project[] = [
     name: "NyRA",
     tagline: "Time-Series Forecasting Model",
     description:
-      "A new model architecture for time-series forecasting, exploring novel designs for sequential data prediction with a focus on accuracy and efficiency.",
+      "A new architecture for time-series forecasting, designed to stay accurate on drifting data without a large inference cost.",
     tags: ["Time-Series Forecasting", "Sequence Modeling", "Deep Learning"],
     status: "Research",
     featured: false,
@@ -183,36 +165,20 @@ export const team: Member[] = [
     name: "Sunjun Hwang",
     role: "Founder",
     avatar: "/sunjun-hwang.png",
-    bio: "Founder of Hwang's Research. Working on the systems that connect AI research to real-world deployment — federated learning infrastructure, Mamba-based perception stacks for autonomous driving, and quantum algorithm simulation. Publishes openly and runs the research direction of the lab.",
-    areas: [
-      "AI Systems",
-      "Autonomous Driving",
-      "Quantum Computing",
-      "Intelligent Systems",
-    ],
-    links: [
-      { label: "GitHub", href: "https://github.com/justinbrianhwang" },
-      { label: "Web", href: "https://www.sjhwang.com/" },
-      { label: "CV", href: "https://www.sjhwangcv.com/" },
-      { label: "Research", href: "https://sjhwangresearch.com/" },
-      { label: "Papers", href: "https://sjhwangpaper.com/" },
-      { label: "Wiki", href: "https://sjhwangwiki.com/" },
-    ],
+    bio: "Founded Hwang's Research in 2025 and sets its research direction, working on federated learning across heterogeneous models, Mamba-based autonomous driving, topological analysis of genomic data, and quantum simulation. First author on all of the laboratory's papers to date.",
+    areas: ["Federated Learning", "Autonomous Driving", "Computational Biology", "Quantum Computing"],
+    links: [{ label: "Website", href: "https://www.sjhwang.com/" }],
   },
   {
     id: "dohyun-hwang",
     name: "Dohyun Hwang",
     role: "Assistant Researcher",
     avatar: "/dohyun-hwang.png",
-    bio: "Assistant researcher supporting experimental work, system development, and day-to-day research infrastructure across the lab's active projects.",
-    areas: [
-      "Research Assistance",
-      "System Development Support",
-      "Experimental Support",
-    ],
+    bio: "Co-author on each of the laboratory's publications, working on experiments and system development across federated learning, autonomous driving, genomics, and adversarial robustness.",
+    areas: ["Federated Learning", "Autonomous Driving", "Computational Biology", "Robustness"],
     links: [
       { label: "GitHub", href: "https://github.com/ezwez1203" },
-      { label: "Web", href: "https://ezwez1203.github.io/myPortfolio/home" },
+      { label: "Website", href: "https://ezwez1203.github.io/myPortfolio/home" },
     ],
   },
 ];

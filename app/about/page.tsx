@@ -13,13 +13,13 @@ const sections: { label: string; title: string; body: React.ReactNode }[] = [
     body: (
       <>
         <p>
-          We study intelligent systems across federated learning, autonomous
-          perception, time-series forecasting, and quantum computation, and we
-          publish that work openly and reproducibly.
+          We work on federated learning, autonomous driving, time-series
+          forecasting, computational biology, and quantum simulation. We publish
+          the results with code so others can check them.
         </p>
         <p>
-          The problems we care about need both careful theory and the patience
-          to build infrastructure from scratch. We do both.
+          Most of these problems need both a careful method and working
+          infrastructure, so we usually build our own tools.
         </p>
       </>
     ),
@@ -30,12 +30,11 @@ const sections: { label: string; title: string; body: React.ReactNode }[] = [
     body: (
       <>
         <p>
-          We release source code with our papers, not after them. We report
-          negative results when they matter, as in our CKAIA 2026 benchmark,
-          where a simple pseudobulk baseline outperformed the more elaborate
-          topological methods.
+          Code is released together with each paper. We also report negative
+          results: in our CKAIA 2026 benchmark, a simple pseudobulk baseline
+          outperformed the topological methods we had set out to test.
         </p>
-        <p>We are cautious about claims that have not been reproduced, including our own.</p>
+        <p>We treat unreproduced claims with caution, our own included.</p>
       </>
     ),
   },
@@ -57,6 +56,10 @@ const sections: { label: string; title: string; body: React.ReactNode }[] = [
           architectures for non-stationary sequential data.
         </li>
         <li>
+          <span className="font-serif text-2xl text-ink">Computational biology</span>: topological
+          analysis of gene expression, held to simple baselines.
+        </li>
+        <li>
           <span className="font-serif text-2xl text-ink">Quantum computing</span>: simulation and
           prototyping for hybrid classical-quantum workloads.
         </li>
@@ -69,11 +72,10 @@ const sections: { label: string; title: string; body: React.ReactNode }[] = [
     body: (
       <>
         <p>
-          Hwang&apos;s Research was founded in 2025 so that its agenda could be
-          set by the problems themselves, not by the cycles of an employer, a
-          grant body, or a product roadmap.
+          Hwang&apos;s Research was founded in 2025 as an independent
+          laboratory, so that the choice of problems stays with the researchers.
         </p>
-        <p>The laboratory is small on purpose. We optimise for depth, not headcount.</p>
+        <p>It is small on purpose, which lets each project get sustained attention.</p>
       </>
     ),
   },
@@ -88,7 +90,7 @@ export default function AboutPage() {
         label="About"
         title="An independent laboratory, founded in 2025."
         description="Open, reproducible research on how machines learn, perceive, and forecast."
-        video="/videos/discussion"
+        video="/videos/driving"
       />
 
       <div className="max-w-6xl mx-auto px-6 lg:px-10 py-20 lg:py-32">

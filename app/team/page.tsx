@@ -25,18 +25,18 @@ export default function TeamPage() {
             id={m.id}
             className="scroll-mt-28 grid gap-10 md:grid-cols-12 md:gap-14 py-16 border-t border-ink/15 first:border-t-0"
           >
-            <div className="md:col-span-5">
-              <div className="relative aspect-[4/5] overflow-hidden bg-ink/5">
+            <div className="md:col-span-4">
+              <div className="relative aspect-[4/5] max-w-[280px] overflow-hidden bg-ink/5">
                 <Image
                   src={m.avatar}
                   alt={m.name}
                   fill
-                  sizes="(min-width: 768px) 40vw, 100vw"
+                  sizes="280px"
                   className="object-cover object-top grayscale contrast-[1.05]"
                 />
               </div>
             </div>
-            <div className="md:col-span-7 md:pt-6">
+            <div className="md:col-span-8 md:pt-2">
               <div className="caps text-brass-deep">{m.role}</div>
               <h2 className="font-serif font-light text-5xl lg:text-6xl mt-3">{m.name}</h2>
               <p className="mt-8 text-lg leading-relaxed text-stone">{m.bio}</p>
